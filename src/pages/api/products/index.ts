@@ -36,13 +36,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const { total, skip, limit } = response.data;
       const result = {
         products: filteredProduct,
-        total: total,
-        skip: skip,
-        limit: limit,
+        total,
+        skip,
+        limit,
       };
       return res.status(200).json(result);
     } catch (error) {
-      console.log('데이터 패칭 오류 발생', error);
+      return res.status(500).json({ message: 'Internal server error' });
     }
   }
 }
